@@ -1,0 +1,17 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+*.cs text eol=crlf
+*.js text eol=crlf
+*.css text eol=crlf
+*.less text eol=crlf
+*.config text eol=crlf
+*.sql text eol=crlf
+*.json text eol=crlf
+*.xml text eol=crlf
+*.resx text eol=crlf
+*.ps1 text eol=crlf
+*.txt text eol=crlf
+*.csproj text eol=crlf
+*.fsx text eol=crlf
+*.fsproj text eol=crlf
+*.fs text eol=crlf
+*.cshtml text eol=crlf
