@@ -34,16 +34,8 @@ namespace Algorithms.Searching
             var leftValue = items[left];
             var rightValue = items[right];
             var position = (int)(left + (((double)(right - left) / (rightValue - leftValue)) * (item - leftValue)));
-            if (position > items.Count - 1)
-            {
-                position = items.Count - 1;
-            }
-
-            if (position < 0)
-            {
-                position = 0;
-            }
-
+            position = Math.Min(position, items.Count - 1);
+            position = Math.Max(position, 0);
             return position;
         }
     }
