@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Consts;
 
 namespace Algorithms.Sorting
 {
@@ -47,7 +48,7 @@ namespace Algorithms.Sorting
 
             while (leftIndex < leftArray.Length && rightIndex < rightArray.Length)
             {
-                if (leftArray[leftIndex].CompareTo(rightArray[rightIndex]) == -1)
+                if (leftArray[leftIndex].CompareTo(rightArray[rightIndex]) == CompareResult.Less)
                 {
                     data[resultIndex] = leftArray[leftIndex];
                     leftIndex++;
@@ -79,9 +80,9 @@ namespace Algorithms.Sorting
         private static void Copy<T>(IList<T> data, int sourceIndex, T[] destination)
            where T : IComparable
         {
-            for (int y = 0; y < destination.Length; y++)
+            for (int i = 0; i < destination.Length; i++)
             {
-                destination[y] = data[sourceIndex + y];
+                destination[i] = data[sourceIndex + i];
             }
         }
     }

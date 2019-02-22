@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Consts;
 
 namespace Algorithms.Graphs.BreadthFirstSearch
 {
@@ -17,7 +18,7 @@ namespace Algorithms.Graphs.BreadthFirstSearch
 
                 if (!visited.Contains(vertex))
                 {
-                    if (vertex.Value.CompareTo(value) == 0)
+                    if (vertex.Value.CompareTo(value) == CompareResult.Equal)
                     {
                         return true;
                     }

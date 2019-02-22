@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Consts;
 
 namespace Algorithms.Searching
 {
@@ -14,11 +15,11 @@ namespace Algorithms.Searching
             {
                 var position = Math.Min(index + step, items.Count - 1);
                 var compareResult = items[position].CompareTo(item);
-                if (compareResult == -1)
+                if (compareResult == CompareResult.Less)
                 {
                     index = position;
                 }
-                else if (compareResult == 1)
+                else if (compareResult == CompareResult.Greater)
                 {
                     return LinearSearch(items, item, Math.Max(index, 0), position);
                 }
@@ -36,7 +37,7 @@ namespace Algorithms.Searching
         {
             for(int index = from; index <= to; index++)
             {
-                if (items[index].CompareTo(item) == 0)
+                if (items[index].CompareTo(item) == CompareResult.Equal)
                 {
                     return index;
                 }

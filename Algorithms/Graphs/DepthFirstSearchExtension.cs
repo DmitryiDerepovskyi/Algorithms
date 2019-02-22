@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Algorithms.Consts;
 
 namespace Algorithms.Graphs.DepthFirstSearch
 {
@@ -18,7 +19,7 @@ namespace Algorithms.Graphs.DepthFirstSearch
 
                 if (!visited.Contains(vertex))
                 {
-                    if (vertex.Value.CompareTo(value) == 0)
+                    if (vertex.Value.CompareTo(value) == CompareResult.Equal)
                     {
                         return true;
                     }

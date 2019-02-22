@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Consts;
 
 namespace Algorithms.Searching
 {
@@ -14,11 +15,11 @@ namespace Algorithms.Searching
             {
                 var median = (left + right) >> 1;
                 var compareResult = items[median].CompareTo(item);
-                if (compareResult == -1)
+                if (compareResult == CompareResult.Less)
                 {
                     left = median + 1;
                 }
-                else if (compareResult == 1)
+                else if (compareResult == CompareResult.Greater)
                 {
                     right = median - 1;
                 }
