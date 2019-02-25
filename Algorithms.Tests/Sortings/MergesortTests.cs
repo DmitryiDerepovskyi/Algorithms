@@ -66,7 +66,6 @@ namespace Algorithms.Tests.Sortings
             Assert.Equal(expectedResult, inputArray);
         }
 
-
         [Fact]
         public void MergesortReturnsOrderedArrayWhenArrayContainsOneNumber()
         {
@@ -82,6 +81,16 @@ namespace Algorithms.Tests.Sortings
         {
             var inputArray = new int[0];
             var expectedResult = new int[0];
+
+            inputArray.Mergesort();
+            Assert.Equal(expectedResult, inputArray);
+        }
+
+        [Fact]
+        public void MergesortReturnsNullArrayWhenArrayIsNull()
+        {
+            int[] inputArray = null;
+            int[] expectedResult = null;
 
             inputArray.Mergesort();
             Assert.Equal(expectedResult, inputArray);

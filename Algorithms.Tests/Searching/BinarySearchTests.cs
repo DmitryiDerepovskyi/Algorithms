@@ -17,11 +17,22 @@ namespace Algorithms.Tests.Sortings
         }
 
         [Fact]
-        public void BinarySearchReturnsItemIndexWhenArrayContainOneElement()
+        public void BinarySearchReturnsItemIndexWhenArrayContainsOneElement()
         {
             var item = 32;
             var inputArray = new[] { item };
             var expectedIndex = 0;
+
+            var actualIndex = inputArray.BinarySearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
+
+        [Fact]
+        public void BinarySearchReturnsDefaultIndexWhenArrayContainsOnlyOneElement()
+        {
+            var item = 32;
+            var inputArray = new[] { 33 };
+            var expectedIndex = -1;
 
             var actualIndex = inputArray.BinarySearch(item);
             Assert.Equal(expectedIndex, actualIndex);
@@ -60,5 +71,26 @@ namespace Algorithms.Tests.Sortings
             Assert.Equal(expectedIndex, actualIndex);
         }
 
+        [Fact]
+        public void BinarySearchReturnsDefaultIndexWhenArrayIsNull()
+        {
+            var item = 25;
+            int[] inputArray = null;
+            var expectedIndex = -1;
+
+            var actualIndex = inputArray.BinarySearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
+
+        [Fact]
+        public void BinarySearchReturnsDefaultIndexWhenArrayIsEmpty()
+        {
+            var item = 25;
+            int[] inputArray = new int[0];
+            var expectedIndex = -1;
+
+            var actualIndex = inputArray.BinarySearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
     }
 }

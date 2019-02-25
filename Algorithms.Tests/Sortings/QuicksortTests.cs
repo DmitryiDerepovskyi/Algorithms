@@ -86,5 +86,15 @@ namespace Algorithms.Tests.Sortings
             inputArray.Quicksort();
             Assert.Equal(expectedResult, inputArray);
         }
+
+        [Fact]
+        public void QuicksortReturnsNullArrayWhenArrayIsNull()
+        {
+            int[] inputArray = null;
+            int[] expectedResult = null;
+
+            inputArray.Quicksort();
+            Assert.Equal(expectedResult, inputArray);
+        }
     }
 }

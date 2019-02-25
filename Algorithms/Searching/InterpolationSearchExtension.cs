@@ -7,22 +7,25 @@ namespace Algorithms.Searching
     {
         public static int InterpolationSearch(this IList<int> items, int item)
         {
-            var left = 0;
-            var right = items.Count - 1;
-            while (left <= right)
+            if (items != null && items.Count > 0)
             {
-                int position = GetPosition(items, item, left, right);
-                if (items[position] < item)
+                var left = 0;
+                var right = items.Count - 1;
+                while (left <= right)
                 {
-                    left = position + 1;
-                }
-                else if (items[position] > item)
-                {
-                    right = position - 1;
-                }
-                else
-                {
-                    return position;
+                    int position = GetPosition(items, item, left, right);
+                    if (items[position] < item)
+                    {
+                        left = position + 1;
+                    }
+                    else if (items[position] > item)
+                    {
+                        right = position - 1;
+                    }
+                    else
+                    {
+                        return position;
+                    }
                 }
             }
 

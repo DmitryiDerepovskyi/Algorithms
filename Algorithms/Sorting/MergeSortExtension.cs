@@ -9,61 +9,70 @@ namespace Algorithms.Sorting
         public static void Mergesort<T>(this IList<T> data) 
             where T : IComparable
         {
-            int subarraySize = 2,
+            if(data == null || data.Count < 2)
+            {
+                return;
+            }
+
+            int blockSize = 2,
                 lastIndex = data.Count - 1,
-                maxSubarraySize = data.Count << 1;
+                maxBlockSize = data.Count << 1;
             
-            while (subarraySize < maxSubarraySize)
+            while (blockSize < maxBlockSize)
             {
                 var index = 0;
                 while (index < lastIndex)
                 {
-                    int right = index + subarraySize - 1;
-                    int left = index;
+                    var right = index + blockSize - 1;
+                    var left = index;
 
-                    int middle = (left + right) >> 1;
+                    var middle = (left + right) >> 1;
 
-                    Merge(data, left, Math.Min(right, lastIndex), middle);
-                    index = index + subarraySize;
+                    var rightIndex = Math.Min(right, lastIndex);
+                    Merge(data, left, rightIndex, middle);
+                    index = index + blockSize;
                 }
 
-                subarraySize = subarraySize << 1;
+                blockSize = blockSize << 1;
             }
         }
 
         public static void Merge<T>(IList<T> data, int low, int high, int middle)
             where T : IComparable
         {
-            int leftIndex = 0, rightIndex = 0, resultIndex = low;
-            var leftArray = new T[middle - low + 1];
             if (high <= middle)
             {
                 return;
             }
 
+            int leftArrayIndex = 0,
+                rightArrayIndex = 0,
+                arrayIndex = low;
+
+            var leftArray = new T[middle - low + 1];
             var rightArray = new T[high - middle];
 
             Copy(data, low, leftArray);
             Copy(data, middle + 1, rightArray);
 
-            while (leftIndex < leftArray.Length && rightIndex < rightArray.Length)
+            while (leftArrayIndex < leftArray.Length && rightArrayIndex < rightArray.Length)
             {
-                if (leftArray[leftIndex].CompareTo(rightArray[rightIndex]) == CompareResult.Less)
+                if (leftArray[leftArrayIndex].CompareTo(rightArray[rightArrayIndex]) == CompareResult.Less)
                 {
-                    data[resultIndex] = leftArray[leftIndex];
-                    leftIndex++;
+                    data[arrayIndex] = leftArray[leftArrayIndex];
+                    leftArrayIndex++;
                 }
                 else
                 {
-                    data[resultIndex] = rightArray[rightIndex];
-                    rightIndex++;
+                    data[arrayIndex] = rightArray[rightArrayIndex];
+                    rightArrayIndex++;
                 }
 
-                resultIndex++;
+                arrayIndex++;
             }
 
-            CopyRestItems(data, leftArray, leftIndex, resultIndex);
-            CopyRestItems(data, rightArray, rightIndex, resultIndex);
+            CopyRestItems(data, leftArray, leftArrayIndex, arrayIndex);
+            CopyRestItems(data, rightArray, rightArrayIndex, arrayIndex);
         }
 
         private static void CopyRestItems<T>(IList<T> data, T[] source, int sourceIndex, int index)

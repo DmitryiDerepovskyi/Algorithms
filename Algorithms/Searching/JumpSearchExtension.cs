@@ -9,23 +9,26 @@ namespace Algorithms.Searching
         public static int JumpSearch<T>(this IList<T> items, T item)
             where T : IComparable
         {
-            int step = (int)Math.Sqrt(items.Count);
-            var index = -1;
-            while(index < items.Count - 1)
+            if (items != null && items.Count > 0)
             {
-                var position = Math.Min(index + step, items.Count - 1);
-                var compareResult = items[position].CompareTo(item);
-                if (compareResult == CompareResult.Less)
+                int step = (int)Math.Sqrt(items.Count);
+                var index = -1;
+                while (index < items.Count - 1)
                 {
-                    index = position;
-                }
-                else if (compareResult == CompareResult.Greater)
-                {
-                    return LinearSearch(items, item, Math.Max(index, 0), position);
-                }
-                else
-                {
-                    return position;
+                    var position = Math.Min(index + step, items.Count - 1);
+                    var compareResult = items[position].CompareTo(item);
+                    if (compareResult == CompareResult.Less)
+                    {
+                        index = position;
+                    }
+                    else if (compareResult == CompareResult.Greater)
+                    {
+                        return LinearSearch(items, item, Math.Max(index, 0), position);
+                    }
+                    else
+                    {
+                        return position;
+                    }
                 }
             }
 

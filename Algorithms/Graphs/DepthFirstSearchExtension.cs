@@ -10,25 +10,28 @@ namespace Algorithms.Graphs.DepthFirstSearch
         public static bool ContainsValue<T>(this Graph<T> graph, T value)
             where T : IComparable<T>
         {
-            var visited = new HashSet<Vertex<T>>();
-            var stack = new Stack<Vertex<T>>(graph.Vertices);
-
-            while (stack.Count > 0)
+            if (graph != null && graph.Vertices.Count() > 0)
             {
-                var vertex = stack.Pop();
+                var visited = new HashSet<Vertex<T>>();
+                var stack = new Stack<Vertex<T>>(graph.Vertices);
 
-                if (!visited.Contains(vertex))
+                while (stack.Count > 0)
                 {
-                    if (vertex.Value.CompareTo(value) == CompareResult.Equal)
-                    {
-                        return true;
-                    }
+                    var vertex = stack.Pop();
 
-                    visited.Add(vertex);
-
-                    foreach (var neighbor in vertex.Neighbors)
+                    if (!visited.Contains(vertex))
                     {
-                        stack.Push(neighbor);
+                        if (vertex.Value.CompareTo(value) == CompareResult.Equal)
+                        {
+                            return true;
+                        }
+
+                        visited.Add(vertex);
+
+                        foreach (var neighbor in vertex.Neighbors)
+                        {
+                            stack.Push(neighbor);
+                        }
                     }
                 }
             }

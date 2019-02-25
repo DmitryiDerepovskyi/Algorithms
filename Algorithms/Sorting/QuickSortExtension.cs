@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Consts;
 
 namespace Algorithms.Sorting
 {
@@ -8,7 +9,7 @@ namespace Algorithms.Sorting
         public static void Quicksort<T>(this IList<T> list)
             where T : IComparable
         {
-            if (list.Count < 2 || list == null)
+            if (list == null || list.Count < 2)
             {
                 return;
             }
@@ -41,21 +42,23 @@ namespace Algorithms.Sorting
             }
         }
 
-        private static int Partition<T>(IList<T> data, int left, int right)
+        private static int Partition<T>(IList<T> data, int leftIndex, int rightIndex)
             where T : IComparable
         {
-            var pivot = data[right];
-            int i = left - 1;
-            for (var j = left; j < right; j++)
+            var pivot = data[rightIndex];
+            int i = leftIndex - 1;
+            for (var j = leftIndex; j < rightIndex; j++)
             {
-                if (data[j].CompareTo(pivot) != 1)
+                if (data[j].CompareTo(pivot) != CompareResult.Greater)
                 {
                     i++;
                     Swap(data, i, j);
                 }
             }
-            Swap(data, i + 1, right);
-            return (i + 1);
+
+            i++;
+            Swap(data, i, rightIndex);
+            return i;
         }
 
         private static void Swap<T>(IList<T> data, int left, int right)

@@ -64,5 +64,25 @@ namespace Algorithms.Tests.Graphs
             var actualResult = graph.ContainsValue(value);
             Assert.True(actualResult);
         }
+
+        [Fact]
+        public void DepthFirstSearchReturnsFalseWhenGraphDoesNotContainsVertex()
+        {
+            var value = 32;
+            var graph = new Graph<int>(new List<Vertex<int>>());
+
+            var actualResult = graph.ContainsValue(value);
+            Assert.False(actualResult);
+        }
+
+        [Fact]
+        public void DepthFirstSearchReturnsFalseWhenGraphIsNull()
+        {
+            var value = 32;
+            Graph<int> graph = null;
+
+            var actualResult = graph.ContainsValue(value);
+            Assert.False(actualResult);
+        }
     }
 }

@@ -17,11 +17,22 @@ namespace Algorithms.Tests.Sortings
         }
 
         [Fact]
-        public void InterpolationSearchReturnsItemIndexWhenArrayContainOneElement()
+        public void InterpolationSearchReturnsItemIndexWhenArrayContainsOneElement()
         {
             var item = 32;
             var inputArray = new[] { item };
             var expectedIndex = 0;
+
+            var actualIndex = inputArray.InterpolationSearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
+
+        [Fact]
+        public void InterpolationSearchReturnsDefaultIndexWhenArrayContainsOnlyOneElement()
+        {
+            var item = 32;
+            var inputArray = new[] { 1 };
+            var expectedIndex = -1;
 
             var actualIndex = inputArray.InterpolationSearch(item);
             Assert.Equal(expectedIndex, actualIndex);
@@ -50,7 +61,7 @@ namespace Algorithms.Tests.Sortings
         }
 
         [Fact]
-        public void InterpolationSearchReturnsDefaultValueWhenArrayDoesNotContainItem()
+        public void InterpolationSearchReturnsDefaultIndexWhenArrayDoesNotContainItem()
         {
             var item = 25;
             var inputArray = new[] { 3, 5, 8, 9 };
@@ -60,5 +71,27 @@ namespace Algorithms.Tests.Sortings
             Assert.Equal(expectedIndex, actualIndex);
         }
 
+
+        [Fact]
+        public void InterpolationSearchReturnsDefaultIndexWhenArrayIsNull()
+        {
+            var item = 25;
+            int[] inputArray = null;
+            var expectedIndex = -1;
+
+            var actualIndex = inputArray.InterpolationSearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
+
+        [Fact]
+        public void InterpolationSearchReturnsDefaultIndexWhenArrayIsEmpty()
+        {
+            var item = 25;
+            int[] inputArray = new int[0];
+            var expectedIndex = -1;
+
+            var actualIndex = inputArray.InterpolationSearch(item);
+            Assert.Equal(expectedIndex, actualIndex);
+        }
     }
 }
