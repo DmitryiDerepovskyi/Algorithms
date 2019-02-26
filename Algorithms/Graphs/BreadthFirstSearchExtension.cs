@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Algorithms.Consts;
 
 namespace Algorithms.Graphs.BreadthFirstSearch
@@ -10,7 +9,7 @@ namespace Algorithms.Graphs.BreadthFirstSearch
         public static bool ContainsValue<T>(this Graph<T> graph, T value)
             where T : IComparable<T>
         {
-            if (graph != null && graph.Vertices.Any())
+            if (graph != null && !graph.IsEmpty())
             {
                 var visited = new HashSet<Vertex<T>>();
                 var queue = new Queue<Vertex<T>>(graph.Vertices);

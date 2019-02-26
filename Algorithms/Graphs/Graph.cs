@@ -29,5 +29,10 @@ namespace Algorithms.Graphs
         {
             _vertices.Add(vertex);
         }
+
+        public bool IsEmpty()
+        {
+            return _vertices.Count == 0;
+        }
     }
 }

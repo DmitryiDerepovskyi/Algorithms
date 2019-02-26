@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Algorithms.Consts;
 
 namespace Algorithms.Graphs.DepthFirstSearch
@@ -10,7 +9,7 @@ namespace Algorithms.Graphs.DepthFirstSearch
         public static bool ContainsValue<T>(this Graph<T> graph, T value)
             where T : IComparable<T>
         {
-            if (graph != null && graph.Vertices.Count() > 0)
+            if (graph != null && !graph.IsEmpty())
             {
                 var visited = new HashSet<Vertex<T>>();
                 var stack = new Stack<Vertex<T>>(graph.Vertices);
